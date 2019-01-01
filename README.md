@@ -1,7 +1,9 @@
 # Automatic SMS Verification with the SMS Retriever API
-As per Google's new policy with the SMS Retriever API, you can perform SMS-based user verification in your Android app automatically, without requiring the user to manually type verification codes, and without requiring any extra app permissions.  
+This sample code is in JAVA, As per Google's new policy with the SMS Retriever API, you can perform SMS-based user verification in your Android app automatically, without requiring the user to manually type verification codes, and without requiring any extra app permissions.  
 
-## Google's warning
+## Warning as per the new policy
+- Google restricts which Android apps can request Call Log and SMS permissions 
+- Only apps selected as the device's default app for making calls or sending text messages will be able to access call logs and SMS data from now on.
 <img src="./screens/googles_warning.png" width=“400”/>
 
 ## Solution
@@ -39,14 +41,14 @@ In next few steps you will see how to create hash keys.
     classpath 'com.google.gms:google-services:4.2.0'
     
 ## Integration steps
-1. App's hash key would be like this qzwS5M4KQ5H. In this sample code AppSignatureHashHelper class is responsible to get Hash key of associated app packege.
+1. AppSignatureHashHelper class is responsible to get Hash key associated with your app as per your packege id. This is only one time required to get your app's hash key it would alwayse be same unless you are changing app's package id.
        
-       Inside Main Activity 
+       // Inside Main Activity 
        Log.d(TAG, "Apps Hash Key: " + appSignatureHashHelper.getAppSignatures().get(0));
-       Apps Hash Key: qzwS5M4KQ5H
+       // Inside  log cat Apps Hash Key: qzwS5M4KQ5H
         
                 
-2. You can add any dummy credentials on login screen to proceed View communicates to presenter.
+2. Declare this SMSReceiver in your app's manifest file in side application tag.
 
         <receiver
             android:name=".SMSReceiver"
@@ -107,7 +109,7 @@ In next few steps you will see how to create hash keys.
        }
 
 ## How to run a sample
-- Clone or download the project open it with Android Studio compile and run it will work.
+ Clone or download the project open it with Android Studio compile and run it will work.
 
 
 ### Server Side Implementation / SMS Guide
@@ -120,5 +122,5 @@ In next few steps you will see how to create hash keys.
 It is totally free to use. :)
 
 ## Credits
-[Google's official doc](https://developers.google.com/identity/sms-retriever/overview)
+[Google's official doc](https://developers.google.com/identity/sms-retriever/overview) , 
 [Chintan Desai's (Repo/Kotlin)](https://github.com/chintandesai49/SMSRetrieverAPIDemo) 
