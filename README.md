@@ -17,95 +17,108 @@ As per Google's new policy with the SMS Retriever API, you can perform SMS-based
 - App extract verification code from SMS and sends to your server for code verification.
 - Your server receives the verification code and after validating it can return success response to proceed.
 
-## Description
+## Prerequisites
+The SMS Retriever API is available only on Android devices with Play services version 10.2 and newer.
 
-- MainActivity implements MainActivityPresenter.View and overrides these methods.
+## Important
+The standard SMS format is given blow.
 
-        public interface View {
-          void updateLoginResponse(String response);
-          void clearInputFeilds();
-          void showProgressBar();
-          void hideProgressBar();
-        }
-                
-- You can add any dummy credentials on login screen to proceed View communicates to presenter.
+    <#> Your ExampleApp code is: 123ABC78 
+    FA+9qCX9VSu
 
-        private MainActivityPresenter presenter = new MainActivityPresenter(this);
-        presenter.loginAPICall("email", "password");  
-   after calling this there would be a dummy loader for fake API call (see MainActivityPresenter class) and return response to View. 
-   
-       mainActivityView.updateLoginResponse("Successfully logged in with these credentials: \n\n" + user.toString());
-       mainActivityView.clearInputFeilds();
-       mainActivityView.hideProgressBar();
-
-
-# [Architecture used](https://github.com/googlesamples/android-architecture "Architecture used")
-
-![](https://i.imgur.com/5fg5z5r.png)
-
+SMS alwayse starts with <#> sign and have a hash key FA+9qCX9VSu to identify your app it is generated with your app's package id. You just need to get this has key from app and share with your server. 
+In next few steps you will see how to create hash keys.
 
 ### Dependencies used
+    // Add at app level gradle file
+    implementation 'com.google.android.gms:play-services-base:16.0.1'
+    implementation 'com.google.android.gms:play-services-identity:16.0.0'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:16.0.0'
+    // Add at project level gradle file
+    classpath 'com.google.gms:google-services:4.2.0'
+    
+## Integration steps
+1. App's hash key would be like this qzwS5M4KQ5H. In this sample code AppSignatureHashHelper class is responsible to get Hash key of associated app packege.
+       
+       Inside Main Activity 
+       Log.d(TAG, "Apps Hash Key: " + appSignatureHashHelper.getAppSignatures().get(0));
+       Apps Hash Key: qzwS5M4KQ5H
+        
+                
+2. You can add any dummy credentials on login screen to proceed View communicates to presenter.
 
-    //App's dependencies
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+        <receiver
+            android:name=".SMSReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />
+            </intent-filter>
+        </receiver> 
+3. Create SMSReceiver class that will listen SMS and extract code and create OTPReceiveListener that will communicate with Activities/Fragments.
+      
+       public interface OTPReceiveListener {
+           void onOTPReceived(String otp);
+           void onOTPTimeOut();
+           void onOTPReceivedError(String error);
+           }
+       }
+4.  Create SMSReceiver listenrs and Intitiate SmsRetrieverClient. 
 
-### Presenter class for communication
+        private void startSMSListener() {
+        try {
+            smsReceiver = new SMSReceiver();
+            smsReceiver.setOTPListener(this);
 
-    public class MainActivityPresenter {
-    private User user;
-    private View mainActivityView;
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(SmsRetriever.SMS_RETRIEVED_ACTION);
+            this.registerReceiver(smsReceiver, intentFilter);
 
-    public MainActivityPresenter(View mainActivityView) {
-        this.user = new User();
-        this.mainActivityView = mainActivityView;
-    } 
+            SmsRetrieverClient client = SmsRetriever.getClient(this);
+            Task<Void> task = client.startSmsRetriever();
+            task.addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    // API successfully started
+                }
+            });
+            task.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    // Fail to start API
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+          }
+        }
+5. You will receive OTP in call back methods implemented in you  Activity/Fragment.
+    
+       @Override
+       public void onOTPReceived(String otp) {
+       }
 
-    public void loginAPICall(String email, String password) {
-        user.setEmail(email);
-        user.setPassword(password);
+       @Override
+       public void onOTPTimeOut() {
+       }
 
-        //Do API call here, I am adding dummy loader/for delay
-        mainActivityView.showProgressBar();
-
-        new CountDownTimer(3000, 1000) {
-
-            public void onTick(long millisUntilFinished) {
-            }
-
-            public void onFinish() {
-
-                mainActivityView.updateLoginResponse("Successfully logged in with these credentials: \n\n" + user.toString());
-
-                mainActivityView.clearInputFeilds();
-                mainActivityView.hideProgressBar();
-            }
-        }.start();
-    }
-      public interface View {
-
-         void updateLoginResponse(String response);
-
-          void clearInputFeilds();
-
-         void showProgressBar();
-
-         void hideProgressBar();
-      }
-    }
-
+       @Override
+       public void onOTPReceivedError(String error) {
+       }
 
 ## How to run a sample
 - Clone or download the project open it with Android Studio compile and run it will work.
 
 
-### Images
-<img src="./screens/1.png" width="200"/> <img src="./screens/2.png" width="200"/>
- <img src="./screens/3.png" width="200"/>
-<br/>
-
+### Server Side Implementation / SMS Guide
+[Google's official doc](https://developers.google.com/identity/sms-retriever/verify)
 
 ## Author
-[Waheed Nazir (GreenProLogix)](https://www.linkedin.com/in/waheed-nazir-36521579/ "Waheed Nazir (GreenProLogix)")
+[Waheed Nazir (WaveTechStudio)](https://www.linkedin.com/in/waheed-nazir-36521579/ "Waheed Nazir (WaveTechStudio)")
 
 ## License
 It is totally free to use. :)
+
+## Credits
+[Google's official doc](https://developers.google.com/identity/sms-retriever/overview)
+[Chintan Desai's (Repo/Kotlin)](https://github.com/chintandesai49/SMSRetrieverAPIDemo) 
