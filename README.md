@@ -108,6 +108,31 @@ In next few steps you will see how to create hash keys.
        public void onOTPReceivedError(String error) {
        }
 
+## Obtain User's Phone Number From Smart lock hint slector
+    // Construct a request for phone numbers and show the picker
+    private void requestHint() {
+    HintRequest hintRequest = new HintRequest.Builder()
+           .setPhoneNumberIdentifierSupported(true)
+           .build();
+
+    PendingIntent intent = Auth.CredentialsApi.getHintPickerIntent(
+            apiClient, hintRequest);
+    startIntentSenderForResult(intent.getIntentSender(),
+            RESOLVE_HINT, null, 0, 0, 0);
+    }
+
+    // Obtain the phone number from the result
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+           super.onActivityResult(requestCode, resultCode, data);
+          if (requestCode == RESOLVE_HINT) {
+          if (resultCode == RESULT_OK) {
+          Credential credential = data.getParcelableExtra(Credential.EXTRA_KEY);
+          // credential.getId();  <-- will need to process phone number string
+         }
+       }
+    }
+
 ## How to run a sample
  Clone or download the project open it with Android Studio compile and run it will work.
 
