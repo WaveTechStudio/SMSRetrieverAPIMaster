@@ -11,7 +11,7 @@ This sample code is in JAVA, As per Google's new policy with the SMS Retriever A
 
 ## Work flow
 
-- Enter or pick mobile number from smart lock hint slector and intiate SMS verification call to your server.
+- Enter or pick mobile number from smart lock hint selector and initiate SMS verification call to your server.
 - App request your server to verify the entered mobile number.
 - Your app calls the SMS Retriever API at the same time and listening for an SMS from your server.
 - Your server sends an SMS message that includes a verification code and a hash to identify your app.
