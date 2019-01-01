@@ -2,7 +2,7 @@
 As per Google's new policy with the SMS Retriever API, you can perform SMS-based user verification in your Android app automatically, without requiring the user to manually type verification codes, and without requiring any extra app permissions.  
 
 ## Google's warning
-<img src="./screens/googles_warning.PNG" width=“400”/>
+<img src="./screens/googles_warning.png" width=“400”/>
 
 ## Solution
 <img src="./screens/sms_retriever_api.png" width=“400”/>
