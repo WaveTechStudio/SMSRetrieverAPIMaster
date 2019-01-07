@@ -4,6 +4,9 @@ This sample code is in JAVA, As per Google's new policy with the SMS Retriever A
 ## Warning as per the new policy
 - Google restricts which Android apps can request Call Log and SMS permissions 
 - Only apps selected as the device's default app for making calls or sending text messages will be able to access call logs and SMS data from now on.
+
+## Alert - this app will be impacted by a policy change. This app will be impacted by a change in the Google Play policy governing the use of SMS and CALL_LOG permissions. Apps that are not compliant may be removed from Google Play on Jan 9th, 2019.
+
 <img src="./screens/googles_warning.png" width=“400”/>
 
 ## Solution
