@@ -144,7 +144,7 @@ In next few steps you will see how to create hash keys.
 [Google's official doc](https://developers.google.com/identity/sms-retriever/verify)
 
 ## Author
-[Waheed Nazir (WaveTechStudio)](https://www.linkedin.com/in/waheed-nazir-36521579/ "Waheed Nazir (WaveTechStudio)")
+[Waheed Nazir](https://www.linkedin.com/in/waheed-nazir-36521579/ "Waheed Nazir (WaveTechStudio)")
 
 ## License
 It is totally free to use. :)
