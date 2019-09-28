@@ -13,7 +13,7 @@ This sample code is in JAVA, As per Google's new policy with the SMS Retriever A
 <img src="./screens/sms_retriever_api.png" width=“400”/>
 
 ## Info
-<img src="./screens/app_view.png.png" width=“200”/>
+<img src="./screens/app_view.png.png"/>
 
 ## Work flow
 
