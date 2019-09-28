@@ -9,11 +9,14 @@ This sample code is in JAVA, As per Google's new policy with the SMS Retriever A
 
 <img src="./screens/googles_warning.png" width=“400”/>
 
+
 ## Solution
 <img src="./screens/sms_retriever_api.png" width=“400”/>
 
+
 ## Info
-<img src="./screens/app_view.png.png"/>
+<img src="./screens/app_view.png" width="200"/>
+
 
 ## Work flow
 
