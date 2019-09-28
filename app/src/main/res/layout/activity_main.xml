@@ -19,6 +19,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="01) Please Check Log Cat For Hash Keys, Share hash key with your server and initiate a OTP request to your server and start SMS read listener through SMS Retriever API.  \n\n02)Your server will send SMS including OTP/Hash Key your app only able to read this SMS due to the hash key identity. \n\nSMS Retriever API will do this job for you. :)\n\n\n\n\n\n Happy Coding :)" />
+        android:text="01) Please Check Log Cat For Hash Keys e.g\n MainActivity: HashKey: HI+rAcLnxet\n\nShare hash key with your server and initiate a OTP request to your server and start SMS read listener through SMS Retriever API.  \n\n02)Your server will send SMS including OTP/Hash Key your app only able to read this SMS due to the hash key identity.
+
+        \n\n Note: If your server is not ready yet you can send the formatted message using any phone and start listening from your app you can easily read it.
+
+        \n\nSMS Retriever API will do SMS reading for you. :)\n\n\n\n\n Happy Coding :)" />
+
+
+
 
 </LinearLayout>

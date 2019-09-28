@@ -12,6 +12,9 @@ This sample code is in JAVA, As per Google's new policy with the SMS Retriever A
 ## Solution
 <img src="./screens/sms_retriever_api.png" width=“400”/>
 
+## Info
+<img src="./screens/app_view.png.png" width=“200”/>
+
 ## Work flow
 
 - Enter or pick mobile number from smart lock hint selector and initiate SMS verification call to your server.
@@ -36,12 +39,20 @@ In next few steps you will see how to create hash keys.
 
 ### Dependencies used
     // Add at app level gradle file
-    implementation 'com.google.android.gms:play-services-base:16.0.1'
-    implementation 'com.google.android.gms:play-services-identity:16.0.0'
-    implementation 'com.google.android.gms:play-services-auth:16.0.1'
-    implementation 'com.google.android.gms:play-services-auth-api-phone:16.0.0'
+        implementation 'androidx.appcompat:appcompat:1.1.0'
+       implementation 'com.google.android.gms:play-services-base:17.1.0'
+       implementation 'com.google.android.gms:play-services-identity:17.0.0'
+       implementation 'com.google.android.gms:play-services-auth:17.0.0'
+       implementation 'com.google.android.gms:play-services-auth-api-phone:17.1.0'
+
+     // Note: If you have migrated your code to AndroidX than add this for LocalBroadCastManager
+         implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.0.0'
+
+
     // Add at project level gradle file
     classpath 'com.google.gms:google-services:4.2.0'
+
+
     
 ## Integration steps
 1. AppSignatureHashHelper class is responsible to get Hash key associated with your app as per your packege id. This is only one time required to get your app's hash key it would alwayse be same unless you are changing app's package id.
