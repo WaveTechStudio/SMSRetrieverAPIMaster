@@ -58,10 +58,10 @@ In next few steps you will see how to create hash keys.
 
     
 ## Integration steps
-1. AppSignatureHashHelper class is responsible to get Hash key associated with your app as per your packege id. This is only one time required to get your app's hash key it would alwayse be same unless you are changing app's package id.
+1. AppSignatureHashHelper class is responsible to get Hash key associated with your app as per your packege id. This is only one time required to get your app's hash key it would always be same unless you are changing app's package id.
        
        // Inside Main Activity 
-       Log.d(TAG, "Apps Hash Key: " + appSignatureHashHelper.getAppSignatures().get(0));
+       Log.d(TAG, "HashKey: " + appSignatureHashHelper.getAppSignatures().get(0));
        // Inside  log cat Apps Hash Key: qzwS5M4KQ5H
         
                 
@@ -82,7 +82,7 @@ In next few steps you will see how to create hash keys.
            void onOTPReceivedError(String error);
            }
        }
-4.  Create SMSReceiver listenrs and Intitiate SmsRetrieverClient. 
+4.  Create SMSReceiver listener and Initiate SmsRetrieverClient.
 
         private void startSMSListener() {
         try {
@@ -164,5 +164,5 @@ In next few steps you will see how to create hash keys.
 It is totally free to use. :)
 
 ## Credits
-[Google's official doc](https://developers.google.com/identity/sms-retriever/overview) , 
-[Chintan Desai's (Repo/Kotlin)](https://github.com/chintandesai49/SMSRetrieverAPIDemo) 
+[Google's official doc](https://developers.google.com/identity/sms-retriever/overview) ,
+[Chintan Desai's (Repo/Kotlin)](https://github.com/chintandesai49/SMSRetrieverAPIDemo)
