@@ -77,7 +77,8 @@ public class MainActivity extends AppCompatActivity implements
         showToast("OTP Received: " + otp);
 
         if (smsReceiver != null) {
-            LocalBroadcastManager.getInstance(this).unregisterReceiver(smsReceiver);
+            unregisterReceiver(smsReceiver);
+            smsReceiver = null;
         }
     }
 
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements
     protected void onDestroy() {
         super.onDestroy();
         if (smsReceiver != null) {
-            LocalBroadcastManager.getInstance(this).unregisterReceiver(smsReceiver);
+            unregisterReceiver(smsReceiver);
         }
     }
 
