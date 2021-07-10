@@ -160,8 +160,6 @@ In next few steps you will see how to create hash keys.
 ## Author
 [Waheed Nazir](https://www.linkedin.com/in/waheed-nazir-36521579/ "Waheed Nazir (WaveTechStudio)")
 
-## License
-It is totally free to use. :)
 
 ## Credits
 [Google's official doc](https://developers.google.com/identity/sms-retriever/overview) ,
